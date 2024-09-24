@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "実践の前に練習用として使用するもの",
   "main": "index.js",
+  "bin": {
+    "create-pr": "./bin/create-pr.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
@@ -24,5 +27,11 @@
     "cz-customizable": {
       "config": ".cz-config.cts"
     }
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "gh": "^2.8.9",
+    "inquirer": "^11.0.2",
+    "zx": "^8.1.8"
   }
 }
