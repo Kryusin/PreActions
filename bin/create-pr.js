@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const inquirer = require("inquirer");
+const inquirer = require("inquirer").default; // .default を追加
 const { execSync } = require("child_process");
 
 async function createPullRequest() {
@@ -22,7 +22,6 @@ async function createPullRequest() {
     },
   ]);
 
-  // GitHub CLI (gh) を使用してPRを作成
   const command = `gh pr create --title "${answers.title}" --body "${answers.description}" --base main --head ${answers.branch}`;
   execSync(command, { stdio: "inherit" });
 }
