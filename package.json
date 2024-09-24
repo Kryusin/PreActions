@@ -7,18 +7,28 @@
     "create-pr": "./bin/create-pr.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint:precommit": "eslint 'template/**/*.{js,jsx,ts,tsx}' --max-warnings 0",
+    "fmt:precommit": "prettier -l 'template/**/*.{js,jsx,ts,tsx,json,css,scss}'"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@eslint/js": "^9.11.1",
     "commitizen": "^4.3.0",
     "commitlint-config-gitmoji": "^2.3.1",
     "cz-customizable": "^7.2.1",
-    "husky": "^9.1.6"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "3.3.3",
+    "typescript-eslint": "^8.7.0"
   },
   "config": {
     "commitizen": {
@@ -32,6 +42,16 @@
     "child_process": "^1.0.2",
     "gh": "^2.8.9",
     "inquirer": "^11.0.2",
+    "typescript": "5.5",
     "zx": "^8.1.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "template/**/*.{js,jsx,ts,tsx}": "npm run lint:precommit",
+    "template/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit"
   }
 }
