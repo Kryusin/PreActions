@@ -1,0 +1,37 @@
+{
+  "name": "preactions",
+  "version": "1.0.0",
+  "description": "実践の前に練習用として使用するもの",
+  "main": "index.js",
+  "bin": {
+    "create-pr": "./bin/create-pr.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "commitizen": "^4.3.0",
+    "commitlint-config-gitmoji": "^2.3.1",
+    "cz-customizable": "^7.2.1",
+    "husky": "^9.1.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cts"
+    }
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "gh": "^2.8.9",
+    "inquirer": "^11.0.2",
+    "zx": "^8.1.8"
+  }
+}
