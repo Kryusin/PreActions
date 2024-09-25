@@ -12,8 +12,24 @@ async function createPullRequest() {
     },
     {
       type: 'input',
-      name: 'description',
-      message: 'Pull Requestの説明を入力してください:',
+      name: 'overview',
+      message: 'Pull Requestの概要を入力してください:',
+    },
+    {
+      type: 'editor',
+      name: 'changes',
+      message: '変更内容を入力してください（リスト形式で複数行を記述してください）:',
+    },
+    {
+      type: 'input',
+      name: 'relatedIssues',
+      message: '関連するIssue番号を入力してください (例: #123), なければEnter:',
+    },
+    {
+      type: 'confirm',
+      name: 'screenshot',
+      message: 'スクリーンショットを含めますか？',
+      default: false,
     },
     {
       type: 'input',
@@ -22,7 +38,25 @@ async function createPullRequest() {
     },
   ]);
 
-  const command = `gh pr create --title "${answers.title}" --body "${answers.description}" --base main --head ${answers.branch}`;
+  // Pull Requestのテンプレート
+  const body = `
+## 概要
+${answers.overview}
+
+## 変更内容
+${answers.changes}
+
+${answers.relatedIssues ? `## 関連するIssue\n- ${answers.relatedIssues}` : ''}
+
+${answers.screenshot ? '## スクリーンショット\nスクリーンショットをここに追加してください。\n' : ''}
+
+## 確認項目
+- [ ] 正常に動作することを確認
+- [ ] ユニットテストがすべてパスすること
+- [ ] UIに変更がある場合は、デザインが要件通りであること
+`;
+
+  const command = `gh pr create --title "${answers.title}" --body "${body}" --base main --head ${answers.branch}`;
   execSync(command, { stdio: 'inherit' });
 }
 
