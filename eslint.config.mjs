@@ -12,6 +12,11 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        jest: 'readonly', // Jest グローバルを追加
+        describe: 'readonly', // 必要に応じて追加
+        it: 'readonly', // 必要に応じて追加
+        test: 'readonly', // 必要に応じて追加
+        expect: 'readonly', // 必要に応じて追加
       },
     },
     plugins: {
@@ -19,7 +24,6 @@ export default [
     },
     rules: {
       'no-unused-vars': 'warn',
-      'no-console': 'warn',
       'prefer-const': 'error',
       '@/no-unused-vars': 'warn',  // 注意: このルールは 'import/no-unused-modules' が通常推奨
       quotes: ['error', 'single'],
