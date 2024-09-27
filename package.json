@@ -9,7 +9,8 @@
   "scripts": {
     "prepare": "husky",
     "lint:precommit": "eslint 'template/**/*.{js,jsx,ts,tsx}' --max-warnings 0",
-    "fmt:precommit": "prettier -l 'template/**/*.{js,jsx,ts,tsx,json,css,scss}'"
+    "fmt:precommit": "prettier -l 'template/**/*.{js,jsx,ts,tsx,json,css,scss}'",
+    "test": "jest template/__tests__"
   },
   "author": "",
   "license": "ISC",

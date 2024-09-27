@@ -17,6 +17,7 @@ export default [
         it: 'readonly', // 必要に応じて追加
         test: 'readonly', // 必要に応じて追加
         expect: 'readonly', // 必要に応じて追加
+        module: 'readonly', // 必要に応じて追加
       },
     },
     plugins: {
