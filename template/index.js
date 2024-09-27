@@ -8,8 +8,12 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  const server = app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 
-module.exports = app; // For testing purposes
+  module.exports = { app, server }; // サーバーをエクスポート
+} else {
+  module.exports = { app };
+}

@@ -55,7 +55,7 @@
     }
   },
   "lint-staged": {
-    "template/**/*.{js,jsx,ts,tsx}": "npm run lint:precommit",
-    "template/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit"
+    "template/**/*.{js,jsx,ts,tsx}": "npm run lint:precommit -- --fix",
+    "template/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit -- --write"
   }
 }
