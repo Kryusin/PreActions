@@ -33,6 +33,7 @@ export default function Home() {
         <div>
           <label>ユーザー名:</label>
           <input
+            name='username'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
