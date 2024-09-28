@@ -4,6 +4,10 @@ describe('フォーム送信テスト', () => {
     cy.get('input[name="username"]').type('testuser');  // ユーザー名を入力
     cy.get('form').submit();  // フォーム送信
 
+    // API呼び出しの完了を待機する
+    cy.intercept('POST', '/api/submit').as('formSubmit');  // API呼び出しを監視
+    cy.wait('@formSubmit');  // APIリクエストが完了するまで待つ
+
     // ゴランバックエンドAPIとの連携結果を検証
     cy.get('.response-message').should('contain', 'フォームデータが送信されました！');
   });
