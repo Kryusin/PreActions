@@ -15,7 +15,7 @@ type FormData struct {
 }
 
 func main() {
-	http.HandleFunc("/api/submit", handleFormSubmit)
+	http.HandleFunc("/form-page", handleFormSubmit)
 
 	// サーバーの起動
 	port := ":8080"
@@ -46,4 +46,3 @@ func handleFormSubmit(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 	}
 }
-
