@@ -5,7 +5,7 @@ import pluginImport from 'eslint-plugin-import';
 export default [
   js.configs.recommended,
   {
-    files: ['template/**/*.{js,mjs,cjs,ts}'],
+    files: ['**/*.{js,mjs,cjs,ts}'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
@@ -18,6 +18,7 @@ export default [
         test: 'readonly', // 必要に応じて追加
         expect: 'readonly', // 必要に応じて追加
         afterAll: 'readonly', // 必要に応じて追加
+        cy: 'readonly', // Cypress グローバルを追加
       },
     },
     plugins: {

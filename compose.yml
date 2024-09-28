@@ -1,0 +1,19 @@
+services:
+  frontend:
+    image: node:latest
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: npm run dev  # Next.jsアプリの起動
+    ports:
+      - "3000:3000"  # Next.jsが3000番ポートで起動
+
+  backend:
+    image: golang:latest
+    working_dir: /go
+    volumes:
+      - ./backend:/go
+    command: go run main.go  # Golangサーバーの起動
+    ports:
+      - "8080:8080"  # Golangが8080番ポートで起動
+
