@@ -5,6 +5,6 @@ describe('フォーム送信テスト', () => {
     cy.get('form').submit();  // フォーム送信
 
     // ゴランバックエンドAPIとの連携結果を検証
-    cy.get('.response-message').should('contain', 'ログイン成功');
+    cy.get('.response-message').should('contain', 'フォームデータが送信されました！');
   });
 });
