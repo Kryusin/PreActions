@@ -14,7 +14,7 @@
     "start:frontend": "cd frontend && npm i && npm run dev",
     "start:backend": "cd backend && go run main.go",
     "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "test:e2e": "npm run start:all && cypress run"
+    "test:e2e": "concurrently \"npm run start:all\" \"cypress run\""
   },
   "author": "",
   "license": "ISC",
