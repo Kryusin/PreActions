@@ -19,6 +19,8 @@ export default [
         expect: 'readonly', // 必要に応じて追加
         afterAll: 'readonly', // 必要に応じて追加
         cy: 'readonly', // Cypress グローバルを追加
+        Cypress: 'readonly', // Cypress グローバルを追加
+        beforeEach: 'readonly', // 必要に応じて追加
       },
     },
     plugins: {

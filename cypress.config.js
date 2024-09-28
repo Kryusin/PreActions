@@ -4,6 +4,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000', // テストするアプリケーションのURL
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}', // テストファイルのパターン
+    supportFile: 'cypress/support/index.js',
   },
   viewportWidth: 1280,
   viewportHeight: 720,
