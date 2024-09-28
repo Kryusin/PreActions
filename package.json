@@ -14,7 +14,8 @@
     "start:frontend": "cd frontend && npm i && npm run dev",
     "start:backend": "cd backend && go run main.go",
     "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "test:e2e": "concurrently \"npm run start:all\" \"cypress run\""
+    "test:e2e": "npm run start:all & wait-on http://localhost:3000 && cypress run",
+    "wait-on": "wait-on"
   },
   "author": "",
   "license": "ISC",
@@ -34,8 +35,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "3.3.3",
-    "typescript-eslint": "^8.7.0",
-    "wait-on": "^8.0.1"
+    "typescript-eslint": "^8.7.0"
   },
   "config": {
     "commitizen": {
