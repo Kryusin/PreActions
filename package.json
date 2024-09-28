@@ -11,10 +11,10 @@
     "lint:precommit": "eslint 'template/**/*.{js,jsx,ts,tsx}' --max-warnings 0",
     "fmt:precommit": "prettier -l 'template/**/*.{js,jsx,ts,tsx,json,css,scss}'",
     "test": "jest template/__tests__",
-    "start:frontend": "cd frontend && npm run dev",
+    "start:frontend": "cd frontend && npm i && npm run dev",
     "start:backend": "cd backend && go run main.go",
     "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "test:e2e": "npm run start:all && cypress run"
+    "test:e2e": "cd frontend && npm i && npm run start:all && cypress run"
   },
   "author": "",
   "license": "ISC",
