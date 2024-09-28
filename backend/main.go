@@ -15,7 +15,7 @@ type FormData struct {
 }
 
 func main() {
-	http.HandleFunc("/form-page", handleFormSubmit)
+	http.HandleFunc("/api/submit", handleFormSubmit)
 
 	// サーバーの起動
 	port := ":8080"
