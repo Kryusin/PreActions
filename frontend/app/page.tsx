@@ -6,6 +6,7 @@ export default function Home() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,8 +20,8 @@ export default function Home() {
 
     try {
       // Golang の API にデータを送信
-      const response = await axios.post('http://localhost:8080/api/submit', formData);
-      console.log('レスポンス:', response.data);
+      const response:any = await axios.post('http://localhost:8080/api/submit', formData);
+      setMessage(response.message);
     } catch (error) {
       console.error('エラー:', error);
     }
@@ -60,6 +61,7 @@ export default function Home() {
         </div>
         <button type="submit">送信</button>
       </form>
+      <div className='response-message'>{message}</div>
     </div>
   );
 }
