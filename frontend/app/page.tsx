@@ -20,8 +20,8 @@ export default function Home() {
 
     try {
       // Golang の API にデータを送信
-      const response:any = await axios.post('http://localhost:8080/api/submit', formData);
-      setMessage(response.message);
+      const response = await axios.post('http://localhost:8080/api/submit', formData);
+      setMessage(response.data.message);
     } catch (error) {
       console.error('エラー:', error);
     }

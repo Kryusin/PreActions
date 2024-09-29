@@ -25,18 +25,32 @@ func main() {
 
 // フォーム送信を受け取るハンドラー
 func handleFormSubmit(w http.ResponseWriter, r *http.Request) {
+	// CORS対応のためのヘッダー設定
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	// OPTIONSリクエスト対応
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
 	if r.Method == http.MethodPost {
 		var formData FormData
 
 		// リクエストのボディからデータをデコード
 		err := json.NewDecoder(r.Body).Decode(&formData)
 		if err != nil {
-			http.Error(w, "Invalid request body", http.StatusBadRequest)
+			// エラーハンドリングをJSONで返す
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]string{"error": "Invalid request body"})
 			return
 		}
 
-		// 受け取ったデータをログに出力
-		fmt.Printf("Received form data: %+v\n", formData)
+		// パスワードをログに表示しない
+		fmt.Printf("Received form data: {Username: %s, Email: %s}\n", formData.Username, formData.Email)
 
 		// 成功レスポンスを返す
 		w.Header().Set("Content-Type", "application/json")
