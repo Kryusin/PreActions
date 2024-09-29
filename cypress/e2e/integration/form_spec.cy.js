@@ -1,14 +1,21 @@
 describe('フォーム送信テスト', () => {
   it('フォームを送信してGolang APIと連携する', () => {
-    cy.visit('http://localhost:3000/');  // フロントエンド（Next.js）にアクセス
-    cy.get('input[name="username"]').type('testuser');  // ユーザー名を入力
-    cy.get('form').submit();  // フォーム送信
+    // APIリクエストをキャプチャ
+    cy.intercept('POST', '/api/submit').as('formSubmit');
 
-    // API呼び出しの完了を待機する
-    cy.intercept('POST', '/api/submit').as('formSubmit');  // API呼び出しを監視
-    cy.wait('@formSubmit');  // APIリクエストが完了するまで待つ
+    // フロントエンド（Next.js）にアクセス
+    cy.visit('http://localhost:3000/');
 
-    // ゴランバックエンドAPIとの連携結果を検証
+    // フォームに入力
+    cy.get('input[name="username"]').type('testuser');
+
+    // フォーム送信
+    cy.get('form').submit();
+
+    // リクエストの完了を待つ
+    cy.wait('@formSubmit').its('response.statusCode').should('eq', 200);
+
+    // APIからのレスポンスが正しいか確認
     cy.get('.response-message').should('contain', 'フォームデータが送信されました！');
   });
 });
